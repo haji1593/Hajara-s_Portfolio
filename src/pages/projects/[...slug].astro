@@ -22,10 +22,11 @@ const fallback = withBase("/projects/placeholder.svg");
       <h1>{data.title}</h1>
       <p>{data.summary}</p>
       <div class="dh-tags">{data.tags.map((t) => <span class="tag tag-dark">{t}</span>)}</div>
-      {(data.repo || data.demo) && (
+      {(data.repo || data.demo || data.sql) && (
         <div class="dh-links">
           {data.repo && <a class="btn btn-primary" href={data.repo} target="_blank" rel="noopener">View Code</a>}
           {data.demo && <a class="btn btn-outline-light" href={data.demo} target="_blank" rel="noopener">Live Demo</a>}
+          {data.sql && <a class="btn btn-outline-light" href={withBase(data.sql)} download>↓ SQL Schema</a>}
         </div>
       )}
     </div>
@@ -124,6 +125,14 @@ const fallback = withBase("/projects/placeholder.svg");
     font-family: ui-monospace, monospace; font-size: 0.86em;
     background: var(--bg-alt); border: 1px solid var(--border);
     padding: 1px 6px; border-radius: 5px; color: var(--accent-dark);
+  }
+  .prose :global(pre) {
+    padding: 22px; border-radius: var(--radius); overflow-x: auto;
+    margin: 0 0 24px; font-size: 0.84rem; line-height: 1.6;
+    border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  }
+  .prose :global(pre code) {
+    background: none; border: 0; padding: 0; color: inherit; font-size: inherit;
   }
   .prose :global(blockquote) {
     margin: 26px 0; padding: 16px 20px;

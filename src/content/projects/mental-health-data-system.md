@@ -5,6 +5,7 @@ category: "Data Systems"
 date: "Aug 2025"
 tags: ["SQL Server", "SSMS", "Database Design", "Normalization", "ER Modeling", "Draw.io"]
 cover: "/projects/mental-health-1.png"
+sql: "/files/mental-health-schema.sql"
 repo: ""        # TODO: push the .sql + docs to a repo and link it here
 featured: true
 order: 4
@@ -37,6 +38,59 @@ keys and constraints across seven tables:
 **4 · Role-based access.** Distinct workflows and permissions for patients, therapists,
 administrators, cashiers, and medical-records staff — so each role touches only the
 data it should.
+
+## The schema (SQL Server)
+
+Built in SSMS with primary keys and foreign-key constraints tying every record back
+to a patient or session:
+
+```sql
+CREATE TABLE Patients (
+    Patient_id INT PRIMARY KEY,
+    PFName VARCHAR(50) NOT NULL,
+    PLName VARCHAR(50) NOT NULL,
+    Age INT NOT NULL,
+    Gender VARCHAR(50) NOT NULL,
+    Phone_number INT,
+    Home_address VARCHAR(50) NOT NULL,
+    Email VARCHAR(50),
+    Registration_date DATE NOT NULL
+);
+
+CREATE TABLE Therapists (
+    TherapistID INT PRIMARY KEY,
+    TFName VARCHAR(100) NOT NULL,
+    TLName VARCHAR(100) NOT NULL,
+    Specialization VARCHAR(100) NOT NULL,
+    Email VARCHAR(50)
+);
+
+CREATE TABLE TSession (
+    TsessionID INT PRIMARY KEY,
+    Patient_id INT,
+    TherapistID INT,
+    SessionDate DATE,
+    Duration INT NOT NULL,
+    FOREIGN KEY (Patient_id) REFERENCES Patients(Patient_id),
+    FOREIGN KEY (TherapistID) REFERENCES Therapists(TherapistID)
+);
+
+CREATE TABLE Payments (
+    payment_id INT PRIMARY KEY,
+    Patient_id INT,
+    TsessionID INT,
+    amount_paid DECIMAL(10,2) NOT NULL,
+    payment_method VARCHAR(100),
+    payment_date DATE NOT NULL,
+    FOREIGN KEY (Patient_id) REFERENCES Patients(Patient_id),
+    FOREIGN KEY (TsessionID) REFERENCES TSession(TsessionID)
+);
+```
+
+On top of the schema I wrote the queries that make the data useful — **inner/left/right/full
+joins** across patients and sessions, **subqueries** to find therapists tied to
+below-average payments, and **aggregates** for wellness trends. The full script
+(schema + `Feedbacks`, `Progress`, `Records` tables + all queries) is one download away.
 
 ## Why it matters
 

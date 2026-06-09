@@ -25,6 +25,8 @@ const projects = defineCollection({
     demo: z.string().optional(),
     // Live app to embed as an iframe on the detail page (e.g. a Streamlit URL).
     embed: z.string().optional(),
+    // Downloadable file shown as a button on the detail page (e.g. a .sql schema).
+    sql: z.string().optional(),
     featured: z.boolean().default(false),
     order: z.number().default(99),
     draft: z.boolean().default(false),
