@@ -45,6 +45,3 @@ region, with slicers for region, payment status, and customer type
 This is the analyst's real job in the public sector: compress messy operational data
 into a few honest indicators that drive a decision — where to send a repair crew,
 which region's collections to chase, who's at risk.
-
-> Screenshot: save your ECG dashboard to `public/projects/ecg-1.png`. It renders
-> in the gallery above automatically.

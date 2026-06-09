@@ -47,7 +47,3 @@ user type let a manager answer their own follow-up questions without a new repor
 This is operational analytics done properly: not just *what happened*, but *how it
 compares* — which is exactly what time-intelligence DAX delivers and what turns a
 chart into a planning tool.
-
-> Screenshots: save your two Power BI pages to `public/projects/bike-1.png`
-> (the charts page) and `public/projects/bike-2.png` (the KPI page). They render
-> in the gallery above automatically.

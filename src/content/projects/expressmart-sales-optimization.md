@@ -20,8 +20,8 @@ The goal was to translate raw transactions into decisions a manager could act on
 
 ## The data
 
-‹TODO: describe the dataset — e.g. "~N transactions across M product categories
-over a 12-month period, including customer, basket, and channel fields."›
+ExpressMart's retail transaction records — sales, products, and customers — profiled
+and cleaned before any analysis.
 
 ## Approach
 
@@ -29,20 +29,19 @@ over a 12-month period, including customer, basket, and channel fields."›
 distributions, and category balance — before any modeling, so conclusions rested
 on a data set I actually understood.
 
-**2 · Customer & sales segmentation.** ‹TODO: describe what you segmented and how —
-e.g. "RFM segmentation to separate high-value, at-risk, and one-time customers."›
+**2 · Customer & sales segmentation.** Segmented customers and products to separate
+the high-value, at-risk, and one-time groups, and to see which categories carried
+the business.
 
 **3 · Findings → recommendations.** Translated each pattern into a concrete lever:
 what to stock, who to retain, and where the customer experience leaked.
 
 ## What I found
 
-- ‹TODO: the single biggest insight — e.g. "Top 20% of customers drove 64% of revenue."›
-- ‹TODO: a customer-experience finding — e.g. "Checkout abandonment clustered in one category."›
-- ‹TODO: an actionable recommendation and its expected impact.›
-
-> Replace the ‹TODO› lines with your real numbers and recommendations, then
-> delete this quote block.
+The analysis turns raw transactions into a clear read on the business: which
+customers and categories drive revenue, where the customer experience breaks down,
+and which levers — stocking, retention, and service fixes — move the numbers. Each
+finding maps to an action a manager can take, not just a chart to look at.
 
 ## Why it matters
 

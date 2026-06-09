@@ -26,6 +26,3 @@ institutional data into a foundation for **analytics-driven decision making**.
 Before an organisation can do data science, it needs a plan for its data. This
 project is that plan — the bridge between raw operational data and the analytics
 that make it useful.
-
-> ‹TODO: add a diagram of the lifecycle to /public/projects/ and reference it as
-> a `cover:`. Expand with any specifics you're comfortable sharing.›

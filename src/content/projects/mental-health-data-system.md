@@ -27,6 +27,3 @@ unglamorous but essential groundwork that good data science depends on.
 Models are only as good as the data feeding them. This project is the half of
 data work that happens before the modeling — and the half that decides whether
 the modeling is worth anything.
-
-> ‹TODO: add the schema diagram or a screenshot to /public/projects/ and set a
-> `cover:` in the frontmatter. Expand any details you want to highlight.›

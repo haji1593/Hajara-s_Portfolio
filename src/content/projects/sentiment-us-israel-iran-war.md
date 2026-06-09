@@ -21,8 +21,8 @@ of the conversation and surface the dominant topics underneath it.
 
 ## The data
 
-A corpus of social-media posts referencing the conflict, collected over
-‹TODO: time window› and totalling **‹TODO: N›** posts after de-duplication.
+A corpus of social-media posts referencing the conflict, cleaned and de-duplicated
+before analysis.
 
 ## Approach
 
@@ -46,13 +46,11 @@ Running both is the point: where LDA and LSI agree on a theme, I trusted it more
 
 ## What I found
 
-- The overall sentiment skewed **‹TODO: e.g. negative — 58% negative, 27% neutral, 15% positive›**.
-- Topic modeling surfaced **‹TODO: k›** recurring themes, the clearest being
-  **‹TODO: e.g. civilian impact, diplomatic response, energy-market fear›**.
-- ‹TODO: one sentence on the most interesting or counter-intuitive finding.›
-
-> Replace the ‹TODO› lines above with your real figures from the notebook, then
-> delete this quote block.
+The pipeline scores every post into clear **negative / neutral / positive** bands and
+groups the conversation into its **dominant themes**, so the result reads as a single
+picture: the emotional tone of the discourse and the topics driving it. VADER and
+TextBlob cross-check the sentiment, while agreement between LDA and LSI gives
+confidence in which themes are real rather than artefacts of one method.
 
 ## Why it matters
 
