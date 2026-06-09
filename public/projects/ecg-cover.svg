@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c1a0f"/><stop offset="1" stop-color="#0a0b10"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg4)"/>
+  <g stroke="#ffffff" stroke-opacity="0.04"><path d="M0 225H1600M0 450H1600M0 675H1600"/></g>
+  <text x="80" y="120" fill="#e3c93f" font-family="monospace" font-size="30" letter-spacing="6">POWER BI · UTILITY KPIs</text>
+  <!-- KPI chips -->
+  <g font-family="monospace">
+    <rect x="120" y="200" width="300" height="160" rx="14" fill="#26240f" stroke="#e3c93f" stroke-opacity="0.5"/>
+    <text x="150" y="260" fill="#9aa0b5" font-size="24">REVENUE</text>
+    <text x="150" y="320" fill="#f0e08a" font-size="46">GH₵347.94K</text>
+    <rect x="460" y="200" width="280" height="160" rx="14" fill="#26240f" stroke="#e3c93f" stroke-opacity="0.5"/>
+    <text x="490" y="260" fill="#9aa0b5" font-size="24">COLLECTION</text>
+    <text x="490" y="320" fill="#f0e08a" font-size="46">100%</text>
+  </g>
+  <!-- outage step line -->
+  <path d="M150 560 H320 V600 H480 V650 H640 V690 H800 V730" stroke="#e3c93f" stroke-width="6" fill="none" stroke-dasharray="2 14" stroke-linecap="round"/>
+  <g fill="#e3c93f"><circle cx="320" cy="560" r="9"/><circle cx="480" cy="600" r="9"/><circle cx="640" cy="650" r="9"/><circle cx="800" cy="690" r="9"/></g>
+  <!-- region bars -->
+  <g fill="#cdb733">
+    <rect x="980" y="470" width="380" height="40" rx="6"/>
+    <rect x="980" y="530" width="320" height="40" rx="6"/>
+    <rect x="980" y="590" width="430" height="40" rx="6"/>
+    <rect x="980" y="650" width="260" height="40" rx="6"/>
+  </g>
+  <text x="980" y="440" fill="#9aa0b5" font-family="monospace" font-size="26">complaints by region</text>
+</svg>

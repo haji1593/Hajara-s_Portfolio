@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14121f"/><stop offset="1" stop-color="#0a0b10"/>
+    </linearGradient>
+    <linearGradient id="ac" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#957bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.04">
+    <path d="M0 225H1600M0 450H1600M0 675H1600"/>
+  </g>
+  <text x="80" y="120" fill="#957bff" font-family="monospace" font-size="30" letter-spacing="6">NLP · SENTIMENT</text>
+  <!-- sentiment bars: negative skew -->
+  <g>
+    <rect x="220" y="320" width="120" height="420" rx="8" fill="url(#ac)" opacity="0.9"/>
+    <rect x="420" y="470" width="120" height="270" rx="8" fill="#3a3550"/>
+    <rect x="620" y="560" width="120" height="180" rx="8" fill="#22d3ee" opacity="0.7"/>
+  </g>
+  <text x="232" y="300" fill="#cfc6ff" font-family="monospace" font-size="26">neg</text>
+  <text x="438" y="450" fill="#9aa0b5" font-family="monospace" font-size="26">neu</text>
+  <text x="632" y="540" fill="#9fe9f5" font-family="monospace" font-size="26">pos</text>
+  <!-- word cloud dots -->
+  <g fill="#7c5cff">
+    <circle cx="1080" cy="300" r="70" opacity="0.9"/>
+    <circle cx="1240" cy="430" r="48" opacity="0.6"/>
+    <circle cx="1010" cy="470" r="38" opacity="0.5"/>
+    <circle cx="1320" cy="300" r="30" opacity="0.45"/>
+    <circle cx="1160" cy="540" r="55" opacity="0.7"/>
+    <circle cx="1340" cy="560" r="26" opacity="0.4"/>
+  </g>
+</svg>

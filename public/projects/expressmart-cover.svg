@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14121f"/><stop offset="1" stop-color="#0a0b10"/>
+    </linearGradient>
+    <linearGradient id="ac2" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#957bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg2)"/>
+  <g stroke="#ffffff" stroke-opacity="0.04"><path d="M0 225H1600M0 450H1600M0 675H1600"/></g>
+  <text x="80" y="120" fill="#957bff" font-family="monospace" font-size="30" letter-spacing="6">RETAIL · ANALYTICS</text>
+  <!-- ascending bars -->
+  <g>
+    <rect x="180" y="600" width="130" height="140" rx="8" fill="#3a3550"/>
+    <rect x="360" y="520" width="130" height="220" rx="8" fill="#46406a"/>
+    <rect x="540" y="430" width="130" height="310" rx="8" fill="#5b4f9a"/>
+    <rect x="720" y="320" width="130" height="420" rx="8" fill="url(#ac2)"/>
+  </g>
+  <!-- trend line + segment -->
+  <path d="M245 600 L425 520 L605 430 L785 320 L1120 240" stroke="#22d3ee" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <circle cx="1120" cy="240" r="14" fill="#22d3ee"/>
+  <g fill="#7c5cff" opacity="0.85">
+    <circle cx="1230" cy="520" r="60"/>
+    <path d="M1230 520 L1230 460 A60 60 0 0 1 1283 548 Z" fill="#22d3ee" opacity="0.8"/>
+  </g>
+  <text x="1140" y="700" fill="#9aa0b5" font-family="monospace" font-size="26">customer segments</text>
+</svg>

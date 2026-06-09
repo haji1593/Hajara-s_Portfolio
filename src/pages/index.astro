@@ -1,0 +1,206 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { site } from "../data/site";
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const featured = projects.filter((p) => p.data.featured).slice(0, 4);
+const firstName = site.name.split(" ")[0];
+---
+
+<Base>
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="top">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1 class="hero-greet">HI, I'M {firstName.toUpperCase()}</h1>
+      <span class="accent-line hero-line"></span>
+      <p class="hero-sub">Analyzing and visualizing data to drive better, informed business decisions.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#about">About Me</a>
+        <a class="btn btn-outline-light" href="/projects">View Projects</a>
+      </div>
+    </div>
+    <a href="#about" class="hero-scroll" aria-label="Scroll down">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="reveal">
+        <span class="about-eyebrow">About Me</span>
+        <h2 class="about-h">A business-analytics mind that ships data science.</h2>
+        <span class="accent-line"></span>
+      </div>
+      <div class="about-body reveal">
+        <p>
+          I'm {site.name}, a final-year <strong>Business Analytics</strong> student at the
+          University of Ghana training as a <strong>data scientist and ML engineer</strong>.
+          I work across the whole pipeline — from wrangling messy data and building the
+          systems that store it, to modeling it and turning the result into something a
+          business can act on.
+        </p>
+        <p>
+          My favourite problems sit where statistics meets a real decision: reading public
+          sentiment from social media, finding the levers that move retail revenue, and
+          building Power BI dashboards that make a year of operations legible at a glance.
+          I've also presented at the <strong>University of Calgary</strong> on empowering
+          global innovation through AI, data science, and analytics.
+        </p>
+
+        <div class="about-stacks">
+          <div class="stack">
+            <h4>Data Science &amp; ML</h4>
+            <div class="tag-row">
+              <span class="tag">Python</span><span class="tag">pandas</span>
+              <span class="tag">scikit-learn</span><span class="tag">NLTK</span>
+              <span class="tag">Gensim</span>
+            </div>
+          </div>
+          <div class="stack">
+            <h4>Analytics &amp; BI</h4>
+            <div class="tag-row">
+              <span class="tag">Power BI</span><span class="tag">DAX</span>
+              <span class="tag">EDA</span><span class="tag">Statistics</span>
+            </div>
+          </div>
+          <div class="stack">
+            <h4>Data Foundations</h4>
+            <div class="tag-row">
+              <span class="tag">SQL</span><span class="tag">Databases</span>
+              <span class="tag">Data Quality</span><span class="tag">Governance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURED PROJECTS ================= -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Projects</h2>
+        <p>A sample of my data science, analytics, and Power BI work.</p>
+      </div>
+
+      <div class="project-grid">
+        {featured.map((p) => (
+          <ProjectCard
+            href={`/projects/${p.id}`}
+            title={p.data.title}
+            summary={p.data.summary}
+            category={p.data.category}
+            date={p.data.date}
+            cover={p.data.cover}
+          />
+        ))}
+      </div>
+
+      <div class="all-projects-cta reveal">
+        <a class="btn btn-ghost" href="/projects">See all projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section" id="contact">
+    <div class="container contact-inner reveal">
+      <span class="about-eyebrow">Get In Touch</span>
+      <h2>Let's build something with your data.</h2>
+      <span class="accent-line" style="margin-inline:auto"></span>
+      <p class="contact-lead">
+        Open to data science, ML, and analytics roles and internships. The fastest way to
+        reach me is email — I reply quickly.
+      </p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href={`mailto:${site.email}`}>Email Me</a>
+        {site.linkedin && <a class="btn btn-ghost" href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
+        {site.github && <a class="btn btn-ghost" href={site.github} target="_blank" rel="noopener">GitHub</a>}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url("/hero.jpg") center/cover no-repeat fixed;
+    color: #fff;
+  }
+  .hero-overlay { position: absolute; inset: 0; background: var(--hero-overlay); }
+  .hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+  .hero-greet {
+    color: #fff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  .hero-line { margin: 26px 0; }
+  .hero-sub {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    max-width: 620px;
+    margin-bottom: 38px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 30px; left: 50%; transform: translateX(-50%);
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.8);
+    animation: bob 2s var(--ease) infinite;
+  }
+  .hero-scroll svg { width: 30px; height: 30px; }
+  @keyframes bob { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
+  @media (prefers-reduced-motion: reduce) { .hero-scroll { animation: none; } }
+
+  /* ---- About ---- */
+  .about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 60px; align-items: start; }
+  .about-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .about-h { margin: 14px 0 18px; }
+  .about-body p { margin-bottom: 18px; font-size: 1.05rem; }
+  .about-body strong { color: var(--ink); font-weight: 600; }
+  .about-stacks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 26px; }
+  .stack h4 {
+    font-family: var(--font-display);
+    font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--ink); margin-bottom: 12px;
+  }
+
+  /* ---- Projects ---- */
+  .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+  .all-projects-cta { text-align: center; margin-top: 48px; }
+
+  /* ---- Contact ---- */
+  .contact-inner { text-align: center; max-width: 640px; margin: 0 auto; }
+  .contact-inner h2 { margin-bottom: 18px; }
+  .contact-lead { margin: 22px auto 32px; color: var(--text); font-size: 1.08rem; }
+  .contact-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .project-grid { grid-template-columns: 1fr; }
+    .hero { background-attachment: scroll; }
+  }
+  @media (max-width: 560px) {
+    .about-stacks { grid-template-columns: 1fr; gap: 18px; }
+  }
+</style>

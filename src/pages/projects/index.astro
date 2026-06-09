@@ -1,0 +1,69 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+// Group by category, in this display order.
+const groupOrder = ["Power BI", "NLP", "Analytics", "Data Systems"] as const;
+const groups = groupOrder
+  .map((g) => ({ name: g, items: projects.filter((p) => p.data.category === g) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<Base title="Projects — Hajara Abdul Mumin">
+  <header class="page-header">
+    <div class="container">
+      <h1>Projects</h1>
+      <span class="accent-line" style="margin:18px auto 0"></span>
+      <p>A sample of my data science, analytics, and Power BI work — each one a real question with a decision at the end.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      {groups.map((group) => (
+        <div class="group">
+          <div class="group-head reveal">
+            <h2>{group.name}</h2>
+            <span class="group-count">{group.items.length} {group.items.length === 1 ? "project" : "projects"}</span>
+          </div>
+          <div class="project-grid">
+            {group.items.map((p) => (
+              <ProjectCard
+                href={`/projects/${p.id}`}
+                title={p.data.title}
+                summary={p.data.summary}
+                category={p.data.category}
+                date={p.data.date}
+                cover={p.data.cover}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .group { margin-bottom: 70px; }
+  .group:last-child { margin-bottom: 0; }
+  .group-head {
+    display: flex; align-items: baseline; gap: 16px;
+    padding-bottom: 16px; margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+  }
+  .group-head h2 { font-size: 1.7rem; }
+  .group-count {
+    font-family: var(--font-display);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  @media (max-width: 980px) { .project-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .project-grid { grid-template-columns: 1fr; } }
+</style>

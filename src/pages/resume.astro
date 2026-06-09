@@ -1,0 +1,268 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+
+// =============================================================================
+// RÉSUMÉ — sourced from Hajara's real CVs, reframed for Data Science / ML.
+// No GPA, no honours classification (intentional).
+// Edit the arrays below to update. The "Download PDF" button uses the browser's
+// print-to-PDF, so it works with zero extra files; print styles are at the end.
+// =============================================================================
+
+const skills = [
+  { group: "Languages & Core", items: ["Python", "SQL", "DAX"] },
+  { group: "Data Science / ML", items: ["scikit-learn", "pandas", "NumPy", "NLP", "Machine Learning"] },
+  { group: "NLP", items: ["NLTK", "Gensim", "VADER", "TextBlob", "Topic Modeling (LDA/LSI)"] },
+  { group: "Analytics & BI", items: ["Power BI", "EDA", "Statistics", "Excel", "Visual Analytics"] },
+  { group: "Data Foundations", items: ["Database Design", "Data Wrangling", "Data Quality", "Data Governance"] },
+];
+
+const projects = [
+  { name: "Public Sentiment on the US–Israel–Iran Conflict", href: "/projects/sentiment-us-israel-iran-war",
+    note: "NLP — VADER/TextBlob sentiment + LDA/LSI topic modeling over social-media data." },
+  { name: "Bike-Share Time Intelligence Dashboard", href: "/projects/bike-trip-time-intelligence",
+    note: "Power BI / DAX over 55K trips: YoY/QoQ/MoM growth, seasonality, fleet mix." },
+  { name: "ECG Performance & Risk Dashboard", href: "/projects/ecg-performance-dashboard",
+    note: "Power BI for the Electricity Company of Ghana: revenue, collections, regional risk." },
+  { name: "Optimizing Sales & Customer Experience — ExpressMart", href: "/projects/expressmart-sales-optimization",
+    note: "Retail analytics: EDA + customer segmentation translated into revenue levers." },
+];
+
+const experience = [
+  {
+    role: "Business Analyst Intern", org: "Pandoll Consulting", date: "3-month internship · 2024",
+    points: [
+      "Researched viable business opportunities and drafted business proposals from the findings.",
+      "Led a team of five in a structured brainstorm to develop and shape a business concept.",
+      "Managed and proofread documents and handled secretariat duties for the team.",
+    ],
+  },
+  {
+    role: "HR Analytics Consultant", org: "MData Consulting", date: "3-day engagement", // TODO: add the year/month if you want it shown
+    points: [
+      "Supported HR personnel from multiple companies with HR analytics in Excel and Power BI.",
+      "Built and explained dashboards that turned workforce data into clear talking points.",
+    ],
+  },
+  {
+    role: "Data Entry Officer", org: "Suns Consult & Services", date: "Jul 2015 – Jan 2020",
+    points: [
+      "Entered, updated, and maintained data across databases and spreadsheets.",
+      "Verified and corrected records to safeguard data accuracy and integrity.",
+    ],
+  },
+];
+
+const speaking = [
+  {
+    role: "Presenter", org: "University of Calgary",
+    note: "Conference: “Empowering Global Innovation through AI, Data Science & Analytics.”",
+  },
+];
+
+const leadership = [
+  { role: "Membership Director", org: "Rotary Club of Tema", date: "Feb 2025 – Present" },
+  { role: "1st Deputy, Electoral Committee", org: "Business Analytics Students' Assoc. (BASA), Univ. of Ghana", date: "Feb 2025 – Present" },
+  { role: "Course Representative", org: "University of Ghana", date: "2023 – 2024" },
+];
+
+const languages = ["English (Fluent)", "Arabic (Conversational)", "Twi (Conversational)", "French (Beginner)"];
+---
+
+<Base title={`Résumé — ${site.name}`}>
+  <header class="page-header resume-header no-print">
+    <div class="container">
+      <h1>Résumé</h1>
+      <span class="accent-line" style="margin:16px auto 22px"></span>
+      <div class="resume-bar">
+        <a class="btn btn-outline-light" href="/">← Home</a>
+        <button class="btn btn-primary" id="download-cv">Download PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="section resume-section">
+    <div class="container resume-wrap">
+      <article class="resume card">
+        <!-- Header -->
+        <header class="r-head">
+          <div>
+            <h1>{site.name}</h1>
+            <p class="r-roles">{site.roles.join("  ·  ")}</p>
+          </div>
+          <ul class="r-contact">
+            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li>{site.location}</li>
+            {site.linkedin && <li><a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>}
+            {site.github && <li><a href={site.github} target="_blank" rel="noopener">GitHub</a></li>}
+          </ul>
+        </header>
+
+        <!-- Summary -->
+        <section class="r-block">
+          <p class="r-summary">
+            Final-year Business Analytics student training as a data scientist and ML
+            engineer. Comfortable across the pipeline — wrangling messy data, building
+            and validating models (NLP, classification, segmentation), and turning the
+            result into Power BI dashboards and recommendations a business can act on.
+          </p>
+        </section>
+
+        <!-- Skills -->
+        <section class="r-block">
+          <h2 class="r-h2">Technical Skills</h2>
+          <div class="r-skills">
+            {skills.map((s) => (
+              <div class="r-skill-row">
+                <span class="r-skill-group">{s.group}</span>
+                <div class="tag-row">{s.items.map((i) => <span class="tag">{i}</span>)}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="r-block">
+          <h2 class="r-h2">Selected Projects</h2>
+          {projects.map((p) => (
+            <div class="r-item">
+              <div class="r-item-head">
+                <a class="r-item-title" href={p.href}>{p.name}</a>
+              </div>
+              <p class="r-item-note">{p.note}</p>
+            </div>
+          ))}
+        </section>
+
+        <!-- Experience -->
+        <section class="r-block">
+          <h2 class="r-h2">Experience</h2>
+          {experience.map((e) => (
+            <div class="r-item">
+              <div class="r-item-head">
+                <span class="r-item-title">{e.role} — {e.org}</span>
+                <span class="r-date">{e.date}</span>
+              </div>
+              <ul class="r-points">{e.points.map((pt) => <li>{pt}</li>)}</ul>
+            </div>
+          ))}
+        </section>
+
+        <!-- Leadership -->
+        <section class="r-block">
+          <h2 class="r-h2">Leadership</h2>
+          {leadership.map((l) => (
+            <div class="r-item r-item-tight">
+              <div class="r-item-head">
+                <span class="r-item-title">{l.role} — {l.org}</span>
+                <span class="r-date">{l.date}</span>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        <!-- Speaking -->
+        <section class="r-block">
+          <h2 class="r-h2">Speaking</h2>
+          {speaking.map((s) => (
+            <div class="r-item">
+              <div class="r-item-head">
+                <span class="r-item-title">{s.role} — {s.org}</span>
+              </div>
+              <p class="r-item-note">{s.note}</p>
+            </div>
+          ))}
+        </section>
+
+        <!-- Education -->
+        <section class="r-block">
+          <h2 class="r-h2">Education</h2>
+          <div class="r-item">
+            <div class="r-item-head">
+              <span class="r-item-title">B.Sc. Business Analytics — University of Ghana</span>
+              <span class="r-date">Expected 2026</span>
+            </div>
+            <p class="r-item-note">
+              Relevant coursework: Machine Learning I &amp; II, Natural Language Processing,
+              Programming in Analytics, Data Wrangling &amp; Preparation, Quantitative Methods,
+              Database Management, Data Governance, Visual Analytics, Cloud Computing,
+              Business Finance.
+            </p>
+          </div>
+        </section>
+
+        <!-- Languages -->
+        <section class="r-block">
+          <h2 class="r-h2">Languages</h2>
+          <div class="tag-row">{languages.map((l) => <span class="tag">{l}</span>)}</div>
+        </section>
+      </article>
+    </div>
+  </section>
+</Base>
+
+<script is:inline>
+  document.getElementById("download-cv")?.addEventListener("click", () => window.print());
+</script>
+
+<style>
+  .resume-header .resume-bar {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  }
+  .resume-section { padding-top: clamp(40px, 6vw, 64px); }
+  .resume-wrap { max-width: 840px; }
+  .resume { padding: clamp(28px, 5vw, 56px); }
+
+  .r-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 24px; flex-wrap: wrap;
+    padding-bottom: 22px; margin-bottom: 26px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .r-head h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
+  .r-roles { font-size: 0.92rem; color: var(--accent); font-weight: 600; margin-top: 8px; }
+  .r-contact { list-style: none; text-align: right; font-size: 0.88rem; }
+  .r-contact li { color: var(--muted); margin-bottom: 4px; }
+  .r-contact a:hover { color: var(--accent); }
+
+  .r-block { margin-bottom: 30px; }
+  .r-summary { font-size: 1.05rem; color: var(--text); }
+  .r-h2 {
+    font-family: var(--font-display);
+    font-size: 0.84rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--ink);
+    padding-bottom: 10px; margin-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .r-skills { display: flex; flex-direction: column; gap: 14px; }
+  .r-skill-row { display: grid; grid-template-columns: 160px 1fr; gap: 16px; align-items: start; }
+  .r-skill-group { font-size: 0.85rem; color: var(--ink); font-weight: 600; padding-top: 4px; }
+
+  .r-item { margin-bottom: 18px; }
+  .r-item-tight { margin-bottom: 12px; }
+  .r-item-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 14px; flex-wrap: wrap;
+  }
+  .r-item-title { font-weight: 600; color: var(--ink); font-size: 1rem; }
+  a.r-item-title:hover { color: var(--accent); }
+  .r-date { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+  .r-item-note { font-size: 0.94rem; color: var(--text); margin-top: 4px; }
+  .r-points { margin: 8px 0 0; padding-left: 20px; }
+  .r-points li { font-size: 0.94rem; color: var(--text); margin-bottom: 6px; }
+  .r-points li::marker { color: var(--accent); }
+
+  @media (max-width: 560px) {
+    .r-contact { text-align: left; }
+    .r-skill-row { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ---- Print: clean A4 résumé ---- */
+  @media print {
+    :global(.nav), :global(.footer), .no-print { display: none !important; }
+    .resume-section { padding: 0 !important; }
+    .resume { border: 0 !important; box-shadow: none !important; padding: 0 !important; }
+    .tag { background: #f2f2f5 !important; border-color: #ddd !important; }
+  }
+</style>

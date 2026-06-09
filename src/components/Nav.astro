@@ -1,0 +1,134 @@
+---
+import { site, nav } from "../data/site";
+---
+
+<header class="nav" id="site-nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand">{site.name}</a>
+
+    <nav class="nav-links" aria-label="Primary">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 66px;
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    transition: color 0.3s var(--ease);
+  }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    position: relative;
+    transition: color 0.2s var(--ease);
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute; left: 0; bottom: -7px;
+    width: 0; height: 2px; background: var(--accent);
+    transition: width 0.25s var(--ease);
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* Scrolled: solid white bar with dark text */
+  .nav.scrolled {
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+  .nav.scrolled .brand { color: var(--ink); }
+  .nav.scrolled .nav-links a { color: var(--text); }
+  .nav.scrolled .nav-links a:hover { color: var(--accent); }
+  .nav.scrolled .nav-toggle span { background: var(--ink); }
+
+  /* Mobile */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none; border: 0; cursor: pointer; padding: 6px;
+  }
+  .nav-toggle span {
+    width: 24px; height: 2px; background: #fff; border-radius: 2px;
+    transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), background 0.3s var(--ease);
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-mobile a {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    padding: 15px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-mobile a:hover { color: var(--accent); background: var(--bg-alt); }
+  .nav-mobile.open { display: flex; }
+
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+  }
+</style>
+
+<script is:inline>
+  const navEl = document.getElementById("site-nav");
+  const toggle = document.getElementById("nav-toggle");
+  const mobile = document.getElementById("nav-mobile");
+
+  const onScroll = () => navEl.classList.toggle("scrolled", window.scrollY > 40);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  toggle?.addEventListener("click", () => {
+    const open = mobile.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+  mobile?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => {
+      mobile.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    })
+  );
+</script>

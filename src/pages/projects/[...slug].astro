@@ -1,0 +1,117 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects", ({ data }) => !data.draft);
+  return projects.map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+const images = data.gallery && data.gallery.length ? data.gallery : data.cover ? [data.cover] : [];
+---
+
+<Base title={`${data.title} — Hajara Abdul Mumin`} description={data.summary}>
+  <header class="page-header detail-header">
+    <div class="container">
+      <span class="dh-cat">{data.category}</span>
+      <h1>{data.title}</h1>
+      <p>{data.summary}</p>
+      <div class="dh-tags">{data.tags.map((t) => <span class="tag tag-dark">{t}</span>)}</div>
+      {(data.repo || data.demo) && (
+        <div class="dh-links">
+          {data.repo && <a class="btn btn-primary" href={data.repo} target="_blank" rel="noopener">View Code</a>}
+          {data.demo && <a class="btn btn-outline-light" href={data.demo} target="_blank" rel="noopener">Live Demo</a>}
+        </div>
+      )}
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container detail-narrow">
+      <a class="back" href="/projects">← All projects</a>
+
+      {images.length > 0 && (
+        <div class="gallery">
+          {images.map((src, i) => (
+            <figure class="shot reveal">
+              <img src={src} alt={`${data.title} — view ${i + 1}`} loading="lazy"
+                   onerror="this.onerror=null;this.src='/projects/placeholder.svg'" />
+            </figure>
+          ))}
+        </div>
+      )}
+
+      <div class="prose reveal">
+        <Content />
+      </div>
+
+      <div class="detail-foot">
+        <a class="btn btn-ghost" href="/projects">← Back to projects</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .detail-header .dh-cat {
+    font-family: var(--font-display);
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #fff; background: var(--accent);
+    padding: 5px 14px; border-radius: 999px; display: inline-block; margin-bottom: 18px;
+  }
+  .detail-header .dh-tags { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+  .tag-dark { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.18); color: rgba(255,255,255,0.9); }
+  .detail-header .dh-links { display: flex; gap: 12px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
+
+  .detail-narrow { max-width: 820px; }
+  .back {
+    display: inline-block;
+    font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 32px; transition: color 0.2s var(--ease);
+  }
+  .back:hover { color: var(--accent); }
+
+  .gallery { display: flex; flex-direction: column; gap: 24px; margin-bottom: 48px; }
+  .shot {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: var(--bg-alt);
+  }
+  .shot img { width: 100%; display: block; }
+
+  /* Markdown prose */
+  .prose :global(h2) {
+    font-size: 1.5rem; margin: 40px 0 14px; color: var(--ink);
+    position: relative; padding-left: 16px;
+  }
+  .prose :global(h2)::before {
+    content: ""; position: absolute; left: 0; top: 6px; bottom: 6px;
+    width: 4px; border-radius: 3px; background: var(--accent);
+  }
+  .prose :global(h2:first-child) { margin-top: 0; }
+  .prose :global(p) { margin-bottom: 18px; font-size: 1.06rem; line-height: 1.75; }
+  .prose :global(strong) { color: var(--ink); font-weight: 600; }
+  .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; }
+  .prose :global(li) { margin-bottom: 10px; }
+  .prose :global(li::marker) { color: var(--accent); }
+  .prose :global(code) {
+    font-family: ui-monospace, monospace; font-size: 0.86em;
+    background: var(--bg-alt); border: 1px solid var(--border);
+    padding: 1px 6px; border-radius: 5px; color: var(--accent-dark);
+  }
+  .prose :global(blockquote) {
+    margin: 26px 0; padding: 16px 20px;
+    border-left: 3px solid var(--accent); background: var(--accent-soft);
+    border-radius: 0 8px 8px 0; color: var(--text); font-size: 0.95rem;
+  }
+  .prose :global(blockquote p) { margin: 0; }
+  .prose :global(a) { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; }
+
+  .detail-foot { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border); }
+</style>

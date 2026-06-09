@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#f0eeea"/>
+  <rect x="1" y="1" width="1598" height="898" fill="none" stroke="#d9d7d0" stroke-width="2" stroke-dasharray="14 12"/>
+  <g transform="translate(800 410)" fill="none" stroke="#b9b6ad" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-70" y="-55" width="140" height="110" rx="10"/>
+    <circle cx="0" cy="-8" r="26"/>
+    <path d="M-70 40 L-22 -2 L10 28 L40 4 L70 30"/>
+  </g>
+  <text x="800" y="560" text-anchor="middle" fill="#9a978d" font-family="Montserrat, sans-serif" font-size="40" font-weight="700">Screenshot coming</text>
+  <text x="800" y="612" text-anchor="middle" fill="#b3b0a6" font-family="Inter, sans-serif" font-size="26">drop the PNG into /public/projects/</text>
+</svg>
