@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import { withBase } from "../../data/site";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects", ({ data }) => !data.draft);
@@ -11,6 +12,7 @@ const { project } = Astro.props;
 const { data } = project;
 const { Content } = await render(project);
 const images = data.gallery && data.gallery.length ? data.gallery : data.cover ? [data.cover] : [];
+const fallback = withBase("/projects/placeholder.svg");
 ---
 
 <Base title={`${data.title} — Hajara Abdul Mumin`} description={data.summary}>
@@ -31,14 +33,14 @@ const images = data.gallery && data.gallery.length ? data.gallery : data.cover ?
 
   <section class="section">
     <div class="container detail-narrow">
-      <a class="back" href="/projects">← All projects</a>
+      <a class="back" href={withBase("/projects")}>← All projects</a>
 
       {images.length > 0 && (
         <div class="gallery">
           {images.map((src, i) => (
             <figure class="shot reveal">
-              <img src={src} alt={`${data.title} — view ${i + 1}`} loading="lazy"
-                   onerror="this.onerror=null;this.src='/projects/placeholder.svg'" />
+              <img src={withBase(src)} alt={`${data.title} — view ${i + 1}`} loading="lazy"
+                   onerror={`this.onerror=null;this.src='${fallback}'`} />
             </figure>
           ))}
         </div>
@@ -49,7 +51,7 @@ const images = data.gallery && data.gallery.length ? data.gallery : data.cover ?
       </div>
 
       <div class="detail-foot">
-        <a class="btn btn-ghost" href="/projects">← Back to projects</a>
+        <a class="btn btn-ghost" href={withBase("/projects")}>← Back to projects</a>
       </div>
     </div>
   </section>

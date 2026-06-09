@@ -33,6 +33,13 @@ export const site = {
   resumePdf: "/Hajara_Abdul_Mumin_CV.pdf",
 } as const;
 
+// Prefix an internal path/asset with the configured base (GitHub Pages subpath).
+// Use for every internal link and /public asset so it works at the deployed URL.
+export function withBase(path: string): string {
+  const base = import.meta.env.BASE_URL; // e.g. "/Hajara-s_Portfolio/"
+  return (base.replace(/\/$/, "") + "/" + path.replace(/^\//, "")).replace(/\/{2,}/g, "/");
+}
+
 export const nav = [
   { label: "About", href: "/#about" },
   { label: "Projects", href: "/projects" },

@@ -1,4 +1,6 @@
 ---
+import { withBase } from "../data/site";
+
 interface Props {
   href: string;
   title: string;
@@ -8,20 +10,22 @@ interface Props {
   cover?: string;
 }
 const { href, title, summary, category, date, cover } = Astro.props;
-const img = cover || "/projects/placeholder.svg";
+const link = withBase(href);
+const img = withBase(cover || "/projects/placeholder.svg");
+const fallback = withBase("/projects/placeholder.svg");
 ---
 
 <article class="pcard reveal">
-  <a href={href} class="pcard-media" aria-label={title}>
+  <a href={link} class="pcard-media" aria-label={title}>
     <img src={img} alt={`${title} preview`} loading="lazy"
-         onerror="this.onerror=null;this.src='/projects/placeholder.svg'" />
+         onerror={`this.onerror=null;this.src='${fallback}'`} />
     <span class="pcard-cat">{category}</span>
   </a>
   <div class="pcard-body">
     <span class="pcard-date">{date}</span>
-    <h3 class="pcard-title"><a href={href}>{title}</a></h3>
+    <h3 class="pcard-title"><a href={link}>{title}</a></h3>
     <p class="pcard-summary">{summary}</p>
-    <a class="btn btn-dark pcard-btn" href={href}>Read More</a>
+    <a class="btn btn-dark pcard-btn" href={link}>Read More</a>
   </div>
 </article>
 

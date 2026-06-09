@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { site } from "../data/site";
+import { site, withBase } from "../data/site";
 
 // =============================================================================
 // RÉSUMÉ — sourced from Hajara's real CVs, reframed for Data Science / ML.
@@ -75,7 +75,7 @@ const languages = ["English (Fluent)", "Arabic (Conversational)", "Twi (Conversa
       <h1>Résumé</h1>
       <span class="accent-line" style="margin:16px auto 22px"></span>
       <div class="resume-bar">
-        <a class="btn btn-outline-light" href="/">← Home</a>
+        <a class="btn btn-outline-light" href={withBase("/")}>← Home</a>
         <button class="btn btn-primary" id="download-cv">Download PDF</button>
       </div>
     </div>
@@ -127,7 +127,7 @@ const languages = ["English (Fluent)", "Arabic (Conversational)", "Twi (Conversa
           {projects.map((p) => (
             <div class="r-item">
               <div class="r-item-head">
-                <a class="r-item-title" href={p.href}>{p.name}</a>
+                <a class="r-item-title" href={withBase(p.href)}>{p.name}</a>
               </div>
               <p class="r-item-note">{p.note}</p>
             </div>

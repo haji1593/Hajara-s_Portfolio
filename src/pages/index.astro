@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import ProjectCard from "../components/ProjectCard.astro";
-import { site } from "../data/site";
+import { site, withBase } from "../data/site";
 
 const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order
@@ -13,7 +13,7 @@ const firstName = site.name.split(" ")[0];
 
 <Base>
   <!-- ================= HERO ================= -->
-  <section class="hero" id="top">
+  <section class="hero" id="top" style={`background-image: url(${withBase("/hero.jpg")})`}>
     <div class="hero-overlay"></div>
     <div class="container hero-content">
       <h1 class="hero-greet">HI, I'M {firstName.toUpperCase()}</h1>
@@ -21,7 +21,7 @@ const firstName = site.name.split(" ")[0];
       <p class="hero-sub">Analyzing and visualizing data to drive better, informed business decisions.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#about">About Me</a>
-        <a class="btn btn-outline-light" href="/projects">View Projects</a>
+        <a class="btn btn-outline-light" href={withBase("/projects")}>View Projects</a>
       </div>
     </div>
     <a href="#about" class="hero-scroll" aria-label="Scroll down">
@@ -103,7 +103,7 @@ const firstName = site.name.split(" ")[0];
       </div>
 
       <div class="all-projects-cta reveal">
-        <a class="btn btn-ghost" href="/projects">See all projects</a>
+        <a class="btn btn-ghost" href={withBase("/projects")}>See all projects</a>
       </div>
     </div>
   </section>
@@ -136,7 +136,11 @@ const firstName = site.name.split(" ")[0];
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: url("/hero.jpg") center/cover no-repeat fixed;
+    background-color: #1a1d27;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #fff;
   }
   .hero-overlay { position: absolute; inset: 0; background: var(--hero-overlay); }

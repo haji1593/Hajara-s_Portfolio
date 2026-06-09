@@ -1,11 +1,11 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-// Deployed to GitHub Pages.
-// This config assumes the repo is named `haji1593.github.io` → served at the root
-// URL below. If you use a DIFFERENT repo name (e.g. "portfolio"), also add:
-//   base: "/portfolio",
-// and the site will live at https://haji1593.github.io/portfolio/
+// Deployed to GitHub Pages at:
+//   https://haji1593.github.io/Hajara-s_Portfolio/
+// `base` must match the repo name exactly. All internal links/assets are
+// prefixed with this base via the withBase() helper in src/data/site.ts.
 export default defineConfig({
   site: "https://haji1593.github.io",
+  base: "/Hajara-s_Portfolio",
 });
