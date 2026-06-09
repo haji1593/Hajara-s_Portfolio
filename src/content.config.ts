@@ -23,6 +23,8 @@ const projects = defineCollection({
     gallery: z.array(z.string()).optional(),
     repo: z.string().optional(),
     demo: z.string().optional(),
+    // Live app to embed as an iframe on the detail page (e.g. a Streamlit URL).
+    embed: z.string().optional(),
     featured: z.boolean().default(false),
     order: z.number().default(99),
     draft: z.boolean().default(false),
