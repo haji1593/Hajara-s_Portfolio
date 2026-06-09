@@ -8,7 +8,7 @@ cover: "/projects/mental-health-1.png"
 sql: "/files/mental-health-schema.sql"
 repo: "https://github.com/haji1593/mental-health-database"
 featured: true
-order: 4
+order: 3
 draft: false
 ---
 

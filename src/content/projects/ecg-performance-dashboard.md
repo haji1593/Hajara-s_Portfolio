@@ -8,8 +8,8 @@ cover: "/projects/ecg-1.png"
 gallery: ["/projects/ecg-1.png"]
 repo: ""        # TODO: link if you publish it
 demo: ""
-featured: true
-order: 3
+featured: false
+order: 5
 draft: false
 ---
 

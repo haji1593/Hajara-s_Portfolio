@@ -1,28 +1,41 @@
 ---
-title: "Enterprise Data Strategy for a Private University"
-summary: "Framework for analytics-driven decisions: how institutional data is collected, transformed, stored, and governed."
-category: "Data Systems"
-date: "Mar 2026"
-tags: ["Data Strategy", "Governance", "Analytics Planning"]
-repo: ""
-featured: false
-order: 6
+title: "Enterprise Data Strategy Dashboard"
+summary: "An interactive Streamlit dashboard turning a university's data into a strategy to predict first-year dropout — architecture, analytics maturity, roadmap, and ROI."
+category: "Analytics"
+date: "2026"
+tags: ["Streamlit", "Python", "Plotly", "Data Strategy", "Predictive Analytics", "Data Governance"]
+cover: "/projects/data-strategy-1.png"
+repo: "https://github.com/haji1593/Analytics-Data_Strategy"
+demo: ""        # TODO: paste the Streamlit Cloud URL after deploying
+featured: true
+order: 4
 draft: false
 ---
 
-## Overview
+## The problem
 
-A strategic framework showing how a private university could turn its scattered
-institutional data into a foundation for **analytics-driven decision making**.
+A university loses students to **first-year dropout**, and the data that could
+flag at-risk students sits scattered across admissions, the LMS, and finance. The
+goal: a **data strategy** that pulls those sources together and turns them into an
+early-warning system leadership can act on.
 
-## What I did
+## What I built
 
-- Mapped the full data lifecycle: **collection → transformation → storage → governance**.
-- Showed concretely how institutional data could feed analytics and reporting,
-  rather than sitting in disconnected silos.
+An interactive **Streamlit dashboard** that frames the strategy across seven pages:
+
+- **Executive Overview** — strategic KPIs and a dropout-reduction roadmap.
+- **Student Risk Intelligence** — the predictive model and early-warning signals.
+- **Data Architecture** — an enterprise **Lakehouse** design.
+- **Analytics Maturity** — a capability-progression framework.
+- **Implementation Roadmap** — a three-phase deployment timeline.
+- **KPI Metrics** — real-time tracking across four domains.
+- **ROI Analysis** — interactive financial modeling of the impact.
+
+It ties the **data lifecycle** (collection → transformation → storage → governance)
+to a concrete decision: which students to support, and what it's worth.
 
 ## Why it matters
 
-Before an organisation can do data science, it needs a plan for its data. This
-project is that plan — the bridge between raw operational data and the analytics
-that make it useful.
+This is data strategy made tangible — not a slide deck, but a working, board-ready
+tool that shows how governed data becomes a predictive, money-saving capability.
+The full app (and Dockerfile for deployment) is on GitHub.
