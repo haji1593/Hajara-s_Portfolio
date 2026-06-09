@@ -6,7 +6,8 @@ date: "2026"
 tags: ["Streamlit", "Python", "Plotly", "Data Strategy", "Predictive Analytics", "Data Governance"]
 cover: "/projects/data-strategy-1.png"
 repo: "https://github.com/haji1593/Analytics-Data_Strategy"
-demo: ""        # TODO: paste the Streamlit Cloud URL after deploying
+demo: "https://analytics-datastrategy.streamlit.app/"
+embed: "https://analytics-datastrategy.streamlit.app/?embed=true"
 featured: true
 order: 4
 draft: false
