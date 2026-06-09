@@ -4,7 +4,7 @@ summary: "NLP on 13K+ posts across 7 platforms — VADER/TextBlob sentiment, LDA
 category: "NLP"
 date: "2026"
 tags: ["Python", "NLTK", "scikit-learn", "VADER", "TextBlob", "LDA", "Logistic Regression", "K-Means", "Streamlit"]
-cover: "/projects/sentiment-cover.svg"
+cover: "/projects/sentiment-cover.png"
 repo: ""        # TODO: link the GitHub repo
 demo: "https://nlpsentimenttopic-us-israel.streamlit.app/"
 embed: "https://nlpsentimenttopic-us-israel.streamlit.app/?embed=true"
