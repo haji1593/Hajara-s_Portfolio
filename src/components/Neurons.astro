@@ -1,0 +1,52 @@
+---
+// Subtle data-science neural-network motif for inner page headers.
+// Absolutely fills its (relative) parent, sits behind the content, and is
+// masked toward the centre so titles stay readable.
+---
+<div class="neurons" aria-hidden="true">
+  <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMid slice">
+    <g class="n-edges">
+      <path d="M90 90 L220 60 M90 90 L160 200 M220 60 L160 200 M160 200 L70 300 M160 200 L260 260 M220 60 L330 140 M330 140 L260 260 M70 300 L260 260" />
+      <path d="M560 70 L700 120 M700 120 L840 60 M560 70 L620 200 M620 200 L700 120" />
+      <path d="M1120 90 L1240 60 M1120 90 L1180 210 M1240 60 L1180 210 M1180 210 L1350 150 M1180 210 L1080 250 M1350 150 L1300 300 M1080 250 L1300 300" />
+      <path d="M430 380 L620 200 M760 400 L840 60 M1010 380 L1080 250 M1240 400 L1300 300" />
+    </g>
+    <g class="n-nodes">
+      <circle cx="90" cy="90" r="4"/><circle cx="220" cy="60" r="5"/><circle cx="160" cy="200" r="4"/>
+      <circle cx="70" cy="300" r="3"/><circle cx="260" cy="260" r="4"/><circle cx="330" cy="140" r="3"/>
+      <circle cx="560" cy="70" r="4"/><circle cx="700" cy="120" r="5"/><circle cx="840" cy="60" r="3"/><circle cx="620" cy="200" r="4"/>
+      <circle cx="1120" cy="90" r="4"/><circle cx="1240" cy="60" r="5"/><circle cx="1180" cy="210" r="4"/>
+      <circle cx="1350" cy="150" r="3"/><circle cx="1300" cy="300" r="4"/><circle cx="1080" cy="250" r="4"/>
+      <circle cx="430" cy="380" r="3"/><circle cx="760" cy="400" r="4"/><circle cx="1010" cy="380" r="3"/><circle cx="1240" cy="400" r="3"/>
+    </g>
+    <g class="n-accent">
+      <circle cx="220" cy="60" r="5"/><circle cx="700" cy="120" r="5"/><circle cx="1180" cy="210" r="5"/>
+    </g>
+    <path class="n-spark" d="M60 360 L130 330 L190 350 L260 300 L330 325"/>
+    <path class="n-spark" d="M1100 70 L1170 40 L1230 60 L1310 30 L1380 55"/>
+  </svg>
+</div>
+
+<style>
+  .neurons {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.55;
+    -webkit-mask-image: radial-gradient(56% 72% at 50% 50%, transparent 26%, #000 80%);
+    mask-image: radial-gradient(56% 72% at 50% 50%, transparent 26%, #000 80%);
+  }
+  .neurons svg { width: 100%; height: 100%; display: block; }
+  .n-edges path { stroke: rgba(255, 255, 255, 0.13); stroke-width: 1; fill: none; }
+  .n-nodes circle { fill: rgba(255, 255, 255, 0.42); }
+  .n-accent circle { fill: var(--accent); animation: nPulse 3.6s ease-in-out infinite; }
+  .n-accent circle:nth-child(2) { animation-delay: 1.2s; }
+  .n-accent circle:nth-child(3) { animation-delay: 2.3s; }
+  .n-spark { stroke: rgba(232, 85, 61, 0.5); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  @keyframes nPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .n-accent circle { animation: none; } }
+</style>

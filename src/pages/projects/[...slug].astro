@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import Neurons from "../../components/Neurons.astro";
 import { withBase } from "../../data/site";
 
 export async function getStaticPaths() {
@@ -17,6 +18,7 @@ const fallback = withBase("/projects/placeholder.svg");
 
 <Base title={`${data.title} — Hajara Abdul Mumin`} description={data.summary}>
   <header class="page-header detail-header">
+    <Neurons />
     <div class="container">
       <span class="dh-cat">{data.category}</span>
       <h1>{data.title}</h1>

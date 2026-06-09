@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Neurons from "../components/Neurons.astro";
 import { site, withBase } from "../data/site";
 
 // =============================================================================
@@ -69,6 +70,7 @@ const languages = ["English (Fluent)", "Arabic (Conversational)", "Twi (Conversa
 
 <Base title={`Résumé — ${site.name}`}>
   <header class="page-header resume-header no-print">
+    <Neurons />
     <div class="container">
       <h1>Résumé</h1>
       <span class="accent-line" style="margin:16px auto 22px"></span>
