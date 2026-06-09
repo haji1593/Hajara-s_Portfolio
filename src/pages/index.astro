@@ -13,8 +13,9 @@ const firstName = site.name.split(" ")[0];
 
 <Base>
   <!-- ================= HERO ================= -->
-  <section class="hero" id="top" style={`background-image: url(${withBase("/hero.jpg")})`}>
+  <section class="hero" id="top">
     <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
     <div class="container hero-content">
       <h1 class="hero-greet">HI, I'M {firstName.toUpperCase()}</h1>
       <span class="accent-line hero-line"></span>
@@ -131,19 +132,51 @@ const firstName = site.name.split(" ")[0];
   /* ---- Hero ---- */
   .hero {
     position: relative;
+    isolation: isolate;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #1a1d27;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    overflow: hidden;
     color: #fff;
+    background:
+      radial-gradient(1100px 520px at 50% -8%, rgba(232, 85, 61, 0.40), transparent 60%),
+      radial-gradient(840px 460px at 84% 116%, rgba(245, 158, 66, 0.22), transparent 60%),
+      radial-gradient(760px 440px at 8% 120%, rgba(40, 78, 140, 0.28), transparent 65%),
+      linear-gradient(165deg, #161a26 0%, #11131b 55%, #0c0d13 100%);
   }
-  .hero-overlay { position: absolute; inset: 0; background: var(--hero-overlay); }
+  /* Faint horizontal glass-layer lines, masked to a soft center */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 16px);
+    -webkit-mask-image: radial-gradient(72% 72% at 50% 38%, #000 6%, transparent 80%);
+    mask-image: radial-gradient(72% 72% at 50% 38%, #000 6%, transparent 80%);
+    opacity: 0.6;
+  }
+  /* Slow-drifting warm glow for depth (respects reduced-motion) */
+  .hero-glow {
+    position: absolute;
+    z-index: -1;
+    top: 18%;
+    left: 50%;
+    width: 620px;
+    height: 620px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 85, 61, 0.30), rgba(245, 158, 66, 0.10) 45%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    animation: heroDrift 14s ease-in-out infinite;
+  }
+  @keyframes heroDrift {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-46%, -54%) scale(1.08); }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero-glow { animation: none; } }
   .hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
   .hero-greet {
     color: #fff;
