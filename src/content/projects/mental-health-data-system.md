@@ -6,7 +6,7 @@ date: "Aug 2025"
 tags: ["SQL Server", "SSMS", "Database Design", "Normalization", "ER Modeling", "Draw.io"]
 cover: "/projects/mental-health-1.png"
 sql: "/files/mental-health-schema.sql"
-repo: ""        # TODO: push the .sql + docs to a repo and link it here
+repo: "https://github.com/haji1593/mental-health-database"
 featured: true
 order: 4
 draft: false
